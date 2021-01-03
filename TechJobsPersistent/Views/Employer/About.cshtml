@@ -1,6 +1,16 @@
-﻿<h1>Employer: Name</h1>
+﻿@model Employer
 
-<div>
-    <p>Name: name</p>
-    <p>Location: location</p>
-</div>
+<table class="table thead-dark">
+    <tr>   
+        <th>Name</th>
+        <th>Location</th>
+    </tr>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Location</td>
+            <td>
+                <a asp-controller="Employer" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </td>
+        </tr>
+    
+</table>

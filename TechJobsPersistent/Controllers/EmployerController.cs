@@ -24,7 +24,7 @@ namespace TechJobsPersistent.Controllers
         public IActionResult Index()
         {
             List<Employer> employers = context.Employers.ToList();
-            return View();
+            return View(employers);
         }
 
         public IActionResult Add()
@@ -32,7 +32,8 @@ namespace TechJobsPersistent.Controllers
             AddEmployerViewModel addEmployerViewModel = new AddEmployerViewModel();
             return View(addEmployerViewModel);
         }
-        [HttpPost]
+
+        [HttpPost("/Add")]
         public IActionResult ProcessAddEmployerForm(AddEmployerViewModel addEmployerViewModel)
         {
             if (ModelState.IsValid)
@@ -44,14 +45,35 @@ namespace TechJobsPersistent.Controllers
                 };
                 context.Employers.Add(newEmployer);
                 context.SaveChanges();
+
+                return Redirect("/employer");
             }
-            return View(addEmployerViewModel);
+            return View("Add", addEmployerViewModel);
         }
+
 
         public IActionResult About(int id)
         {
+            Employer theEmployer = context.Employers
+                .Single(e => e.Id == id);
             
-            return View();
+            return View(theEmployer);
+        }
+
+        
+
+        
+        public IActionResult Delete(int id)
+        {
+            Employer theEmployer = context.Employers
+                .Single(e => e.Id == id);
+
+            context.Employers.Remove(theEmployer);
+                context.SaveChanges();
+
+                return Redirect("/employer");
+            
+            
         }
     }
 }
