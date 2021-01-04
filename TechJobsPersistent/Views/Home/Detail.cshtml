@@ -12,7 +12,7 @@
         <td>@Model.EmployerName</td>
         <td>@Model.SkillText</td>
         <td>
-            <button type="button" class="btn btn-danger"> <a class="text-white" asp-controller="Home" asp-action="Delete" asp-route-id="@Model.JobId">Delete</a> </button>
+             <a  asp-controller="Home" asp-action="Delete" asp-route-id="@Model.JobId">Delete</a>
         </td>
     </tr>
 
