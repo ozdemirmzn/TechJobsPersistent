@@ -19,7 +19,27 @@
         <span asp-validation-for="EmployerId"></span>
         <a asp-controller="Employer" asp-action="Add">Add an Employer</a>
     </div>
-    
+
+    <div class="form-group">
+        @if (Model.Skills.Count == 0)
+        {
+            <p>No Skills yet!</p>
+            <p><a asp-controller="Skill" asp-action="Add">Add a Skill</a></p>
+
+        }
+        else
+        {
+
+            @foreach (Skill skill in Model.Skills)
+            {
+                <label class="form-check-label">
+                    <span>@skill.Name</span>
+                    <input class="form-check-inline" type="checkbox" name="selectedSkills" value="@skill.Id">
+                </label>
+            }
+        }
+    </div>
+
 
     <input type="submit" value="Add Job" />
 </form>
